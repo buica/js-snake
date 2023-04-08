@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #6e6e6e;
+}
+
+.wrapper {
+    display: flex;
+    height: 70vmin;
+    width: 75vmin;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 3px;
+    background: #5e47b3;
+
+}
+
+.game-board {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    background: #674dc7;
+}
+
+.game-board .snake-head {
+    color: #34dc44;
+}
+
+.game-board .food {
+    color: #f239c7;
+}
+
+.scoreboard {
+    display: grid;
+
+
+}
+
+.score {
+    font-size: 1.4rem;
+    color: #ffffff;
+
+}
+
+/* test on iphone and add settings iphone screens
+@media screen {
+
+}
+*/
