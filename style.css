@@ -5,33 +5,40 @@
 }
 
 body {
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 50vh;
     background: #6e6e6e;
 }
 
+/*use vmin for height/width to adapt game to phone screens*/
 .wrapper {
     display: flex;
-    height: 70vmin;
+    height: 90vmin;
     width: 75vmin;
     flex-direction: column;
-    justify-content: center;
     border-radius: 3px;
-    background: #5e47b3;
+    background: #3e3856;
 
 }
 
-.game-board {
-    display: grid;
-    height: 100%;
-    width: 100%;
-    background: #674dc7;
+#gameboard {
+    display: block;
+    /*justify-content: center;*/
+    /*align-content: center;*/
+    height: 600px;
+    width: 500px;
+    background: #5639e8;
 }
 
-.game-board .snake-head {
-    color: #34dc44;
+#game-board .head {
+    background-color: #34dc44;
+}
+
+#game-board .tail {
+    background-color: #34dc44;
 }
 
 .game-board .food {
@@ -40,17 +47,16 @@ body {
 
 .scoreboard {
     display: grid;
-
-
 }
 
 .score {
     font-size: 1.4rem;
+    padding: 1%;
     color: #ffffff;
 
 }
 
-/* test on iphone and add settings iphone screens
+/* todo: test on iphone and add settings iphone screens
 @media screen {
 
 }
