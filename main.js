@@ -1,24 +1,24 @@
 const gameBoard = document.getElementById("gameboard");
 const context = gameBoard.getContext('2d')
-const scoreBoard = document.getElementById("scoreboard");
+const scoreElement = document.getElementById("score");
 const bgColor = "navy";  // mmove to stylesheet?
 const tailColor = "green";
 const foodColor = "red";
 
-//todo
-    // implement scoreboard
-    // implement game over when snake collides with its tail
-    // allow snake to move through walls to come out other side
-    // add style sheet and make prettier
-//extras
-    // make mobile viewport friendly
-    // speed up when eating every 10 food
-    // add random superfood that gives extra points
-
-let speed = 4; // used as delay val in setInterval to determine snake speed
-let score = 0;
+let speed = 5; // used as delay val in setInterval to determine snake speed
 let snakeSize = 20;
 let gameOver = false;
+let score = 0;
+
+//todo
+// implement scoreboard
+// implement game over when snake collides with its tail
+// allow snake to move through walls to come out other side
+// add style sheet and make prettier
+//extras
+// make mobile viewport friendly
+// speed up when eating every 10 food
+// add random superfood that gives extra points
 
 window.onload = () => {
     gameLoop()
@@ -31,7 +31,7 @@ class Snake {
         this.y = y;
         this.size = size;
         this.color = tailColor;
-        this.tail = [{x: this.x, y: this.y}] // tail array
+        this.tail = [{ x: this.x, y: this.y }] // tail array
         this.directionX = 1;
         this.directionY = 0;
     }
@@ -95,9 +95,10 @@ let food = new Food();
 const eatFood = function eatFoodAndGenerateNewFood() {
     if ((snake.tail[snake.tail.length - 1].x == food.x) &&
         (snake.tail[snake.tail.length - 1].y == food.y)) {
-            snake.tail[snake.tail.length] = {x: food.x, y: food.y};
-            food = new Food();
-            score++;
+        snake.tail[snake.tail.length] = { x: food.x, y: food.y };
+        food = new Food();
+        score++;
+        scoreElement.innerText = "Score: " + score.toString();
     }
 }
 
@@ -128,23 +129,20 @@ function drawBoard() {
 
 
 // controls
+// only allow snake to turn perpendicularly
 document.addEventListener('keydown', (event) => {
-    if (event.key == 'w' || event.key == 'ArrowUp')  {
+    if (snake.directionY != 1 && (event.key == 'w' || event.key == 'ArrowUp')) {
         snake.directionX = 0;
         snake.directionY = -1;
-        console.log("up");
-    } else if (event.key == 'a' || event.key == 'ArrowLeft') {
+    } else if (snake.directionX != 1 && (event.key == 'a' || event.key == 'ArrowLeft')) {
         snake.directionX = -1;
         snake.directionY = 0;
-        console.log("left");
-    } else if (event.key == 's' || event.key == 'ArrowDown') {
+    } else if (snake.directionY != -1 && (event.key == 's' || event.key == 'ArrowDown')) {
         snake.directionX = 0;
         snake.directionY = 1;
-        console.log("down");
-    } else if (event.key == 'd' || event.key == 'ArrowRight') {
+    } else if (snake.directionX != -1 && (event.key == 'd' || event.key == 'ArrowRight')) {
         snake.directionX = 1;
         snake.directionY = 0;
-        console.log("right");
     }
 });
 

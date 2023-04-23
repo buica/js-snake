@@ -1,21 +1,27 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- add fonts from fontawesome or google fonts later -->
-    <!--add stylesheet-->
+    <link rel="stylesheet" href="style.css">
+    </link>
     <title>Snake</title>
 </head>
 
 <body>
-        <div class="scoreboard">
-            <div class="score">Score </div>
-        </div>
 
-        <canvas id="gameboard" width="500" height="500"></canvas>
-        <script src="main.js"></script>
-        <!-- add mobile controls on screen later? -->
+    <div class="canvas-wrapper">
+        <div class="scoreboard">
+            <div id="score">Score: 0</div>
+        </div>
+        <!--defining canvas width and height in stylesheet distorts the rendering-->
+        <canvas id="gameboard" width="500px" height="500px"></canvas>
+    </div>
+    <script src="main.js"></script>
+    <!-- add mobile controls on screen later? -->
     </div>
 
 </body>
+
 </html>

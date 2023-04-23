@@ -1,63 +1,17 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 50vh;
-    background: #6e6e6e;
-}
-
-/*use vmin for height/width to adapt game to phone screens*/
-.wrapper {
-    display: flex;
-    height: 90vmin;
-    width: 75vmin;
-    flex-direction: column;
-    border-radius: 3px;
-    background: #3e3856;
-
+.canvas-wrapper {
+    position: relative;
 }
 
 #gameboard {
-    display: block;
-    /*justify-content: center;*/
-    /*align-content: center;*/
-    height: 600px;
-    width: 500px;
-    background: #5639e8;
-}
-
-#game-board .head {
-    background-color: #34dc44;
-}
-
-#game-board .tail {
-    background-color: #34dc44;
-}
-
-.game-board .food {
-    color: #f239c7;
+    box-sizing: border-box;
 }
 
 .scoreboard {
-    display: grid;
+    position: absolute;
+    margin: 5px;
+    color: #9a9a9a;
 }
 
-.score {
-    font-size: 1.4rem;
-    padding: 1%;
-    color: #ffffff;
+/*#score {
 
-}
-
-/* todo: test on iphone and add settings iphone screens
-@media screen {
-
-}
-*/
+}*/
