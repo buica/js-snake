@@ -1,7 +1,7 @@
 const gameBoard = document.getElementById("gameboard");
 const context = gameBoard.getContext('2d')
 const scoreElement = document.getElementById("score");
-const bgColor = "navy";  // mmove to stylesheet?
+const bgColor = "navy";  // move to stylesheet?
 const tailColor = "green";
 const foodColor = "red";
 
@@ -11,10 +11,9 @@ let gameOver = false;
 let score = 0;
 
 //todo
-// implement scoreboard
 // implement game over when snake collides with its tail
 // allow snake to move through walls to come out other side
-// add style sheet and make prettier
+// make prettier in stylesheet
 //extras
 // make mobile viewport friendly
 // speed up when eating every 10 food
@@ -67,9 +66,11 @@ class Snake {
         this.x = this.tail[this.tail.length - 1].x; // update snake's position
         this.y = this.tail[this.tail.length - 1].y;
 
+        checkCollision();
         console.log("snake pos: ", snake.x, snake.y);
     }
 }
+
 
 class Food {
     constructor(x, y, size) {
@@ -92,16 +93,32 @@ const snake = new Snake(100, 240, snakeSize, tailColor);
 let food = new Food();
 
 
-const eatFood = function eatFoodAndGenerateNewFood() {
+function checkCollision() {
+    for (let i = 0; i < snake.tail.length - 1; i++) { // - 1 since we dont want game over when snake has no tail
+        if (snake.x == snake.tail[i].x && snake.y == snake.tail[i].y) {
+            //window.alert("Game Over");
+            reset();
+        }
+    }
+}
+
+//const goThroughWalls = function goThroughWallsToOppositeSide() {
+//    let snake = snake.tail[snake.tail.length - 1];
+//    if (snake.x == gameBoard.width) {
+//        snake.x = 0;
+
+//    }
+//}
+
+function eatFoodAndGenerateNewFood() {
     if ((snake.tail[snake.tail.length - 1].x == food.x) &&
         (snake.tail[snake.tail.length - 1].y == food.y)) {
-        snake.tail[snake.tail.length] = { x: food.x, y: food.y };
+        snake.tail[snake.tail.length] = { x: snake.x, y: snake.y }; // add new tail element to snake
         food = new Food();
         score++;
         scoreElement.innerText = "Score: " + score.toString();
     }
 }
-
 
 //Game rendering functions
 // helper function for drawing rectangles on our game board
@@ -115,9 +132,9 @@ function drawBoard() {
 
     for (let i = 0; i < snake.tail.length; i++) {
         drawRect(
-            snake.tail[i].x + 2, // add gap between tail
-            snake.tail[i].y + 2,
-            snake.size, // center on rect
+            snake.tail[i].x,
+            snake.tail[i].y,
+            snake.size,
             snake.size,
             snake.color
         );
@@ -126,6 +143,17 @@ function drawBoard() {
     drawRect(food.x, food.y, food.size, food.size, food.color);
 }
 
+
+function reset() {
+    snake.x = 100;
+    snake.y = 240;
+    snake.tail = [{x:snake.x, y:snake.y}];
+    snake.directionX = 1;
+    snake.directionY = 0;
+    food = new Food();
+    score = 0;
+    scoreElement.innerText = "Score: " + score.toString();
+}
 
 
 // controls
@@ -147,19 +175,18 @@ document.addEventListener('keydown', (event) => {
 });
 
 
-const update = function updateDisplayforGameLoop() {
+function updateDisplay() {
     context.clearRect(0, 0, gameBoard.width, gameBoard.height);
     snake.moveSnake();
-    eatFood();
-    //checkHitWall
+    eatFoodAndGenerateNewFood();
+    //goThroughWalls();
     drawBoard();
 }
 
 
 // main game loop
-const gameLoop = function mainGameLoop() {
+function gameLoop() {
     setInterval(() => {
-        update();
-        //drawBoard();
+        updateDisplay();
     }, 1000 / speed) // fps = 1000 / interval
 }
