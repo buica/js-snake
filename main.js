@@ -8,6 +8,8 @@ const highScoreElement = document.getElementById("highScore");
 let highScore = localStorage.getItem("highScore");
 if (!highScore) {
   highScore = 0;
+} else { // get high score from local storage
+    highScoreElement.innerText = "High Score: " + highScore;
 }
 let speed = 6; // used as delay val in setInterval to determine snake speed
 let snakeSize = 20;
