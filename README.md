@@ -5,3 +5,4 @@ To run it, download the contents to a single directory on your local disk.
 Then either write out the pathname in your browser to run it (i.e. /Users/user/Downloads/js-snake/index.html), 
 or manually drag the .HTML file onto the browser page.
 
+<img src="https://media.giphy.com/media/RJUNDQDPRCDYL9bJPz/giphy.gif"/>
